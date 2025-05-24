@@ -1,8 +1,9 @@
-{% extends 'base.html' %}
-
-{% block title %}Home - My Blog{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome to the Blog Platform!</h1>
-<p>This is the homepage. Use the navigation bar above to explore.</p>
+  <section style="text-align: center; padding: 60px 20px; background-color: #f9f9f9;">
+    <h1 style="font-size: 3em; color: #333;">Welcome to Django Blog Platform</h1>
+    <p style="font-size: 1.2em; color: #555; margin: 20px 0;">Share your thoughts. Read from others. Comment and connect.</p>
+    <a href="{% url 'login' %}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Get Started</a>
+  </section>
 {% endblock %}
