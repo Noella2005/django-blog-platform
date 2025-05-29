@@ -1,3 +1,5 @@
+{% load static %}
+{% load tz %}  <!-- add this line -->
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <button onclick="toggleTheme()" style="background: none; color: white; border: none; cursor: pointer;">🌙</button>
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">Blog Platform</a>
             <div class="collapse navbar-collapse">
@@ -24,8 +27,44 @@
         </div>
     </nav>
 
+    {% if messages %}
+  <div style="padding: 10px; background-color: #d4edda; color: #155724; margin: 10px;">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 10px; background: #f4f4f4;">
+        <p>&copy; {{ now|date:"Y" }} Django Blog Platform. All rights reserved.</p>
+      </footer> 
+      <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+      
+        // Load theme from localStorage
+        window.onload = () => {
+          if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.innerHTML = '☀️'; // sun for light mode
+          } else {
+            toggleBtn.innerHTML = '🌙'; // moon for dark mode
+          }
+        };
+      
+        toggleBtn.addEventListener('click', () => {
+          body.classList.toggle('dark-mode');
+          const isDark = body.classList.contains('dark-mode');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          toggleBtn.innerHTML = isDark ? '☀️' : '🌙';
+        });
+      </script>
+      
+             
 </body>
 </html>

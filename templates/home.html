@@ -1,18 +1,21 @@
-{% extends 'base.html' %}
-
-{% block title %}Home - My Blog{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to the Blog Platform!</h1>
-    <p>This is the homepage. Use the navigation bar above to explore.</p>
+  <section style="text-align: center; padding: 60px 20px; background-color: #f9f9f9;">
+    <h1 style="font-size: 3em; color: #333;">Welcome to Django Blog Platform</h1>
+    <p style="font-size: 1.2em; color: #555; margin: 20px 0;">Share your thoughts. Read from others. Comment and connect.</p>
+    
     {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}! You are logged in.</p>
-        <a href="{% url 'profile' %}">View Profile</a>
-        <form method="post" action="{% url 'logout' %}">
+        <p style="font-size: 1.1em;">Hello, {{ user.username }}! You are logged in.</p>
+        <a href="{% url 'profile' %}" style="margin-right: 10px;">View Profile</a>
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
             {% csrf_token %}
-            <button type="submit">Logout</button>
+            <button type="submit" style="padding: 5px 15px;">Logout</button>
         </form>
     {% else %}
-    <p>Welcome, Guest! Please <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a></p>
+        <a href="{% url 'login' %}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">Login</a>
+        <a href="{% url 'register' %}" style="padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Register</a>
     {% endif %}
+  </section>
 {% endblock %}
+

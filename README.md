@@ -21,3 +21,29 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
+## Branches and Responsibilities
+
+| Branch Name         | Assigned Member | Responsibility                  |
+|---------------------|-----------------|--------------------------------|
+| feature-accounts     | Member 1        | Login, register, profile        |
+| feature-posts        | Member 2        | Blog posts (create/view)        |
+| feature-comments     | Member 3        | Comment system                  |
+| feature-layout       | Member 4 (You)  | Navbar, base.html, layout, GitHub |
+
+> ⚠️ Everyone should make changes **only** in their own branch!
+
+---
+
+## How to Switch to Your Branch
+
+Before you start working, run the following commands to get the latest updates and switch to your branch:
+
+```bash
+git fetch origin
+git checkout feature-branch-name
+
+#Example: 
+If your branch is called feature-accounts, run:
+
+git fetch origin
+git checkout feature-accounts
