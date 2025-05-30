@@ -1,8 +1,11 @@
-from django.urls import path, include
-from . import views
+from django.urls import path
+from .views import CustomLoginView, register, profile, edit_profile
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', views.account_home, name='account_home'),
-    path('register/', views.register, name='register'),
-    path('', include('django.contrib.auth.urls')),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('register/', register, name='register'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('profile/', profile, name='profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
 ]

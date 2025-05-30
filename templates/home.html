@@ -3,6 +3,16 @@
 {% block title %}Home - My Blog{% endblock %}
 
 {% block content %}
-<h1>Welcome to the Blog Platform!</h1>
-<p>This is the homepage. Use the navigation bar above to explore.</p>
+    <h1>Welcome to the Blog Platform!</h1>
+    <p>This is the homepage. Use the navigation bar above to explore.</p>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! You are logged in.</p>
+        <a href="{% url 'profile' %}">View Profile</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+    <p>Welcome, Guest! Please <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a></p>
+    {% endif %}
 {% endblock %}
